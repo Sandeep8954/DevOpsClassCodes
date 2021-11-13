@@ -1,21 +1,18 @@
 pipeline {
 
-
-    agent any
+       agent any
 	
 	tools {   
 		   jdk "myjava"
 			maven "mymaven"
 		  }
 		  
-		  
 		  stages {
-		  
-		        stage('Compile_job')
+		         stage('Compile')
 				   { 
 				      steps 
 					  {      
-					    git 'https://github.com/edureka-git/DevOpsClassCodes.git'
+					    git 'https://github.com/Sandeep8954/DevOpsClassCodes.git'
 						sh "mvn compile"
 					  }
 				   }
@@ -23,7 +20,7 @@ pipeline {
 					{
 						steps	
 						 { 
-						   git 'https://github.com/edureka-git/DevOpsClassCodes.git'
+						   git 'https://github.com/Sandeep8954/DevOpsClassCodes.git'
 						   sh "mvn pmd:pmd"
 						  }
 					}
@@ -31,20 +28,25 @@ pipeline {
 					{
 						steps	
 						 { 
-						   git 'https://github.com/edureka-git/DevOpsClassCodes.git'
+						   git 'https://github.com/Sandeep8954/DevOpsClassCodes.git'
 						   sh "mvn test"
 						  }
 					}	
+				stage('Matric_Check')
+					{
+						steps	
+						 { 
+						   git 'https://github.com/Sandeep8954/DevOpsClassCodes.git'
+						   sh "mvn cobertura:cobertura -Dcobertura.report.format=xml"
+						  }
+					}		
 				stage('Package')
 					{
 						steps	
 						 { 
-						   git 'https://github.com/edureka-git/DevOpsClassCodes.git'
+						   git 'https://github.com/Sandeep8954/DevOpsClassCodes.git'
 						   sh "mvn package"
 						  }
 					}	
 				}	
 		}		
-					
-					
-			
