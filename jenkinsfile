@@ -32,14 +32,7 @@ pipeline {
 						   sh "mvn test"
 						  }
 					}	
-				stage('Matric_Check')
-					{
-						steps	
-						 { 
-						   git 'https://github.com/Sandeep8954/DevOpsClassCodes.git'
-						   sh "mvn cobertura:cobertura -Dcobertura.report.format=xml"
-						  }
-					}		
+				
 				stage('Package')
 					{
 						steps	
